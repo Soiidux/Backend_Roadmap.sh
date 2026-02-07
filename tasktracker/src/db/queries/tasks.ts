@@ -1,8 +1,8 @@
 import { db } from "../index.js";
 import { tasks, type task } from "../schema.js";
 import { eq, ne } from "drizzle-orm";
-type Status = "todo" | "in-progress" | "done";
-enum statusEnum {
+export type Status = "todo" | "in-progress" | "done";
+export enum statusEnum {
 	todo = "todo",
 	in_progress = "in-progress",
 	done = "done",
@@ -18,30 +18,26 @@ export async function addTask(description: string, status?: Status) {
 	return result;
 }
 
-export async function updateTask(id: string, description?: string, status?: Status) {
-	const updateData: Partial<{
-		description: string,
-		status: Status,
-	}> = {};
-
-	if (description !== undefined) {
-		updateData.description = description;
-	}
-
-	if (status !== undefined) {
-		updateData.status = status;
-	}
-
+export async function updateTask(id: number, description: string) {
 	const [result] = await db
 		.update(tasks)
-		.set(updateData)
+		.set({ description: description })
 		.where(eq(tasks.id, id))
 		.returning();
 
 	return result;
 }
 
-export async function deleteTask(id: string) {
+export async function markTask(id: number, status: Status) {
+	const [result] = await db
+		.update(tasks)
+		.set({ status: status })
+		.where(eq(tasks.id, id))
+		.returning();
+	return result;
+}
+
+export async function deleteTask(id: number) {
 	const [result] = await db
 		.delete(tasks)
 		.where(eq(tasks.id, id))

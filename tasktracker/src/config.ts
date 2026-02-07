@@ -1,26 +1,26 @@
 process.loadEnvFile();
-
+import { type Command, getCommands } from "./commands/command.js"
 type DBConfig = {
 	dbURL: string
 }
 
-type APIConfig = {
-	port: number,
+type CLIConfig = {
+	commands: Record<string, Command>
 }
 
-type Config = {
-	api: APIConfig,
+export type Config = {
+	cli: CLIConfig,
 	db: DBConfig,
 }
 
-const api: APIConfig = {
-	port: Number(process.env.PORT) || 8080,
+const cli: CLIConfig = {
+	commands: getCommands(),
 }
 const db: DBConfig = {
 	dbURL: process.env.DB_URL || "Enter db url",
 }
 
 export const config: Config = {
-	api,
+	cli,
 	db,
 }

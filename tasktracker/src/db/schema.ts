@@ -1,4 +1,4 @@
-import { uuid, pgTable, varchar, timestamp, pgEnum } from "drizzle-orm/pg-core";
+import { serial, pgTable, varchar, timestamp, pgEnum } from "drizzle-orm/pg-core";
 
 export const taskStatusEnum = pgEnum("task_status", [
 	"todo",
@@ -6,11 +6,11 @@ export const taskStatusEnum = pgEnum("task_status", [
 	"done",
 ])
 
-export const tasks = pgTable("users", {
-	id: uuid("id").primaryKey().defaultRandom(),
+export const tasks = pgTable("tasks", {
+	id: serial("id").primaryKey(),
 	description: varchar("description", { length: 255 }).notNull(),
 	status: taskStatusEnum("status").default("todo").notNull(),
-	createdAt: timestamp("created_at").defaultNow(),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").notNull().defaultNow().$onUpdate(() => new Date()),
 });
 
