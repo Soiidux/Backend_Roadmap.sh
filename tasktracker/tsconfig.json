@@ -1,7 +1,7 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "baseUrl":"."
+    "baseUrl":".",
     "rootDir": "./src",
     "outDir": "./dist",
 
@@ -41,5 +41,6 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+  "exclude":["node_modules","drizzle.config.ts","dist"]
 }

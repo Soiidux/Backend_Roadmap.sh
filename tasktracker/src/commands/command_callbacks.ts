@@ -25,7 +25,7 @@ export async function addCommand(config: Config, description: string, status?: s
 
 export async function updateCommand(config: Config, idRaw: string, description: string): Promise<void> {
 	const id = Number(idRaw);
-	if (!description || !id) {
+	if (!description || Number.isNaN(id)) {
 		console.log("Correct usage: ", config.cli.commands.update);
 		return;
 	}
@@ -37,6 +37,7 @@ export async function updateCommand(config: Config, idRaw: string, description: 
 	console.log("Task updated successfully");
 	console.log("ID: ", taskRecord.id);
 	console.log("New description: ", taskRecord.description);
+	return;
 }
 
 export async function deleteCommand(config: Config, idRaw: string): Promise<void> {
@@ -51,6 +52,7 @@ export async function deleteCommand(config: Config, idRaw: string): Promise<void
 		return;
 	}
 	console.log("Task deleted ID: ", taskRecord.id);
+	return;
 }
 
 export async function markCommand(config: Config, idRaw: string, status: string): Promise<void> {
@@ -67,6 +69,7 @@ export async function markCommand(config: Config, idRaw: string, status: string)
 	console.log("Task marked as ", status);
 	console.log("ID: ", taskRecord.id);
 	console.log("New Status: ", taskRecord.status);
+	return;
 }
 
 export async function listCommand(config: Config, status?: string): Promise<void> {
@@ -106,6 +109,7 @@ export async function listCommand(config: Config, status?: string): Promise<void
 export async function helpCommand(config: Config) {
 	console.log("Heres the list of commands");
 	console.log(config.cli.commands);
+	return;
 }
 
 

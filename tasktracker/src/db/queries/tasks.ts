@@ -1,4 +1,4 @@
-import { db } from "../index.js";
+import { db } from "../../index.js";
 import { tasks, type task } from "../schema.js";
 import { eq, ne } from "drizzle-orm";
 export type Status = "todo" | "in-progress" | "done";
