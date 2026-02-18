@@ -1,5 +1,5 @@
-import { db } from "../index.js";
-import { expenses, type NewExpense, categoryEnum } from "../schema.js";
+import { db } from "../../db/index.js";
+import { expenses, type NewExpense, categoryEnum } from "../../db/schema.js";
 import { eq, gte, lte, and, desc, sum } from "drizzle-orm";
 export type UpdateData = Partial<Omit<NewExpense, "id" | "userId" | "updatedAt">>;
 

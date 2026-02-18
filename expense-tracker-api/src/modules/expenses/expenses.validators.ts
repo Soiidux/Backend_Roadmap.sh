@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { categoryEnum } from "../db/schema.js";
+import { categoryEnum } from "../../db/schema.js";
 
 const categoryValues = categoryEnum.enumValues;
 export const createExpenseSchema = z.object({

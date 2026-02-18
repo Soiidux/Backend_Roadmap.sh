@@ -21,10 +21,12 @@ const db: dbConfig = {
 	dbURL: process.env.DB_URL || "no db url found",
 }
 
-export const config: Config = {
+const config: Config = {
 	api,
 	db,
 }
+
+export default config;
 
 
 

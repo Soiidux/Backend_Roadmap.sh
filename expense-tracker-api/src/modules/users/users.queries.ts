@@ -1,5 +1,5 @@
-import { db } from "../index.js";
-import { type NewUser, users } from "../schema.js";
+import { db } from "../../db/index.js";
+import { type NewUser, users } from "../../db/schema.js";
 import { eq } from "drizzle-orm";
 
 type UpdateData = Partial<Omit<NewUser, "id" | "createdAt" | "updatedAt">>;
