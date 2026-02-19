@@ -2,6 +2,7 @@ process.loadEnvFile();
 
 type apiConfig = {
 	port: number
+	JwtSecret: string
 }
 
 type dbConfig = {
@@ -15,6 +16,7 @@ type Config = {
 
 const api: apiConfig = {
 	port: Number(process.env.PORT) || 8080,
+	JwtSecret: process.env.JWT_SECRET || "JWT secret not found"
 }
 
 const db: dbConfig = {
